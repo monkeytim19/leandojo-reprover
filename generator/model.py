@@ -11,7 +11,7 @@ import pytorch_lightning as pl
 from torchmetrics import Metric
 from abc import ABC, abstractmethod
 from typing import List, Dict, Any, Optional, Tuple
-from transformers import T5ForConditionalGeneration, AutoTokenizer
+from transformers import T5ForConditionalGeneration, AutoTokenizer, AutoModelForSeq2SeqLM
 
 from common import (
     zip_strict,
@@ -115,8 +115,10 @@ class RetrievalAugmentedGenerator(TacticGenerator, pl.LightningModule):
                 ret_ckpt_path, self.device, freeze=True
             )
 
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.generator = T5ForConditionalGeneration.from_pretrained(model_name)
+        # self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        # self.generator = T5ForConditionalGeneration.from_pretrained(model_name)
+        self.tokenizer = AutoTokenizer.from_pretrained(model_name) 
+        self.generator = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
         self.topk_accuracies = dict()
         for k in range(1, num_beams + 1):

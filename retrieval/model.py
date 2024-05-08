@@ -11,7 +11,7 @@ from loguru import logger
 import pytorch_lightning as pl
 import torch.nn.functional as F
 from typing import List, Dict, Any, Tuple, Union
-from transformers import T5EncoderModel, AutoTokenizer
+from transformers import T5EncoderModel, AutoTokenizer, AutoModelForTextEncoding
 
 from common import (
     Premise,
@@ -42,8 +42,10 @@ class PremiseRetriever(pl.LightningModule):
         self.warmup_steps = warmup_steps
         self.num_retrieved = num_retrieved
         self.max_seq_len = max_seq_len
+        # self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        # self.encoder = T5EncoderModel.from_pretrained(model_name)
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.encoder = T5EncoderModel.from_pretrained(model_name)
+        self.encoder = AutoModelForTextEncoding.from_pretrained(model_name)  
         self.embeddings_staled = True
 
     @classmethod
