@@ -115,10 +115,9 @@ class RetrievalAugmentedGenerator(TacticGenerator, pl.LightningModule):
                 ret_ckpt_path, self.device, freeze=True
             )
 
-        # self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        # self.generator = T5ForConditionalGeneration.from_pretrained(model_name)
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name) 
-        self.generator = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        self.generator = T5ForConditionalGeneration.from_pretrained(model_name)
+        # self.generator = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
         self.topk_accuracies = dict()
         for k in range(1, num_beams + 1):
