@@ -133,3 +133,6 @@ dmypy.json
 
 # Checkpoints
 *.ckpt
+
+# .elan
+.elan/
