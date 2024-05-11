@@ -1,0 +1,11 @@
+# generate .bin file for generator for data splits
+python my_files/downloaded_checkpoints/generator_random.ckpt/zero_to_fp32.py my_files/downloaded_checkpoints/generator_random.ckpt my_files/downloaded_checkpoints/generator_random.ckpt/pytorch_model.bin
+python my_files/downloaded_checkpoints/generator_novel_premises.ckpt/zero_to_fp32.py my_files/downloaded_checkpoints/generator_novel_premises.ckpt my_files/downloaded_checkpoints/generator_novel_premises.ckpt/pytorch_model.bin
+
+# generate .bin file for retriever for data splits
+python my_files/downloaded_checkpoints/retriever_random.ckpt/zero_to_fp32.py my_files/downloaded_checkpoints/retriever_random.ckpt my_files/downloaded_checkpoints/retriever_random.ckpt/pytorch_model.bin
+python my_files/downloaded_checkpoints/retriever_novel_premises.ckpt/zero_to_fp32.py my_files/downloaded_checkpoints/retriever_novel_premises.ckpt my_files/downloaded_checkpoints/retriever_novel_premises.ckpt/pytorch_model.bin
+
+# generate .bin file for reprover for data splits
+python my_files/downloaded_checkpoints/reprover_random.ckpt/zero_to_fp32.py my_files/downloaded_checkpoints/reprover_random.ckpt my_files/downloaded_checkpoints/reprover_random.ckpt/pytorch_model.bin
+python my_files/downloaded_checkpoints/reprover_novel_premises.ckpt/zero_to_fp32.py my_files/downloaded_checkpoints/reprover_novel_premises.ckpt my_files/downloaded_checkpoints/reprover_novel_premises.ckpt/pytorch_model.bin

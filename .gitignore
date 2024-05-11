@@ -136,3 +136,9 @@ dmypy.json
 
 # .elan
 .elan/
+
+# virtual environment
+ReProver/
+
+# files from redundant directories
+my_files/downloaded_checkpoints/

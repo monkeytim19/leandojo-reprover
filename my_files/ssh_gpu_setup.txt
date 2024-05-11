@@ -1,0 +1,23 @@
+export PYTHONPATH=/vol/bitbucket/tcwong/individual_project/leandojo-reprover
+
+# TODO
+export GITHUB_ACCESS_TOKEN=TODO
+
+# set path to CUDA_HOME
+export CUDA_HOME=/vol/cuda/12.2.0
+export PATH=${CUDA_HOME}/bin:${PATH}
+export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:$LD_LIBRARY_PATH
+
+# set path .elan
+export PATH=$(echo $PATH | tr ':' '\n' | grep -v "/homes/tcwong/.elan/bin" | tr '\n' ':')
+PATH="$PATH:/vol/bitbucket/tcwong/individual_project/leandojo-reprover/.elan/bin"
+
+# set cache directory for saving mathlib4 repo
+export CACHE_DIR=/vol/bitbucket/tcwong/individual_project/leandojo-reprover/.cache/lean_dojo
+
+# run scripts
+python scripts/trace_repos.py
+python prover/evaluate.py --data-path data/leandojo_benchmark_4/random/ --ckpt_path my_files/generator.ckpt --split test --num-workers 3 --num-gpus 1
+
+# takes ~25 GB of VRAM for 128 batch size
+python retrieval/index.py --ckpt_path my_files/retriever.ckpt --corpus-path data/leandojo_benchmark_4/corpus.jsonl --output-path my_files/retrieved_index.pkl
